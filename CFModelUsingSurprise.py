@@ -29,21 +29,29 @@ def suggestSimilarMovies():
             pass
 
     similarityRow = simMatrix[testUser]
+    # print()
+    # print("similarityRow-------")
+    # print()
+    # print(similarityRow)
 
     similarUsers = []
     for id, score in enumerate(similarityRow):
         if id != testUser:
             similarUsers.append((id,score) )
 
-    kNeighbours = heapq.nlargest(10, similarUsers, key=lambda t: t[1])
 
+    kNeighbours = heapq.nlargest(10, similarUsers, key=lambda t: t[1])
+    # print("kNeighbours: ", kNeighbours)
     candidates = defaultdict(float)
 
     for similarUser in kNeighbours:
         id = similarUser[0]
         userSimilarityScore = similarUser[1]
         theirRatings = trainingData.ur[id]
+        # print("id: ", trainingData.to_raw_uid(id))
+        # print("theirRatings: ", theirRatings)
         for rating in theirRatings:
+            # print("Item id: {0}, rating: {1}".format(trainingData.to_raw_iid(rating[0]), rating[1]))
             candidates[rating[0]] += (rating[1] / 5.0) * userSimilarityScore
 
     watched = {}

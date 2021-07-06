@@ -2,7 +2,7 @@ import csv
 from surprise import Dataset, Reader
 from random import choice
 
-bastPathForData = '/Users/adityaiyengar/Desktop/Desktop/Netflix task - Preteek/ml-latest-small/'
+bastPathForData = '/Users/adityaiyengar/work/CFModel/ml-latest-small/'
 
 class dataReader:
     def __init__(self):
